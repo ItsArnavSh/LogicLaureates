@@ -67,7 +67,7 @@
     </div>
     <nav class = "navbar karla" bind:this={navbar}>
     <p class = "space-x-5">
-        <a href = "./rent">Rent</a>
+        <a href = "./options">Rent</a>
         
         <a href = ./apply>Apply</a>
         
