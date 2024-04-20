@@ -1,6 +1,32 @@
 const Property = require("../models/Properties");
 const mailSender = require("../utils/mailSender");
 
+exports.getDraftLands = async(req, res)=>{
+    try{
+
+        const Properties = await Property.find({status: "Draft"}).populate("Owner");
+
+        if(!Properties){
+            return res.status(400).json({
+                success: false,
+                message: "No draft lands found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: Properties,
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            message: "Something went wrong while fetching draft lands",
+        });
+    }
+}
+
 exports.approveStorage = async(req , res)=>{
     try{
 

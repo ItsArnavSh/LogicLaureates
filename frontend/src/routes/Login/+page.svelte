@@ -1,11 +1,10 @@
 <script>
     import {token} from '../../writeables/authWriteables';
     import {loginApi , loginTokenApi} from '../../services/operations/auth'
-    
-    if(token){
-        loginTokenApi(token);
-    }
 
+    token.subscribe(value=>{
+        loginTokenApi(token);
+    })
 
     let email = '';
     let password = '';
@@ -15,6 +14,7 @@
     }
  
 </script>
+
 
 <div class="w-[100vw] h-[100vh] flex flex-col items-center gap-9">
     <div class="bg-[#CBCDA9] h-[20%] w-full"></div>
