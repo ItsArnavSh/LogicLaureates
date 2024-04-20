@@ -1,10 +1,7 @@
 <script>
     import {token} from '../../writeables/authWriteables';
-    import {loginApi , loginTokenApi} from '../../services/operations/auth'
+    import {loginApi} from '../../services/operations/auth'
 
-    token.subscribe(value=>{
-        loginTokenApi(token);
-    })
 
     let email = '';
     let password = '';

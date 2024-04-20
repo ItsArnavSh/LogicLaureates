@@ -4,8 +4,8 @@
         <p class = "">Storage for your Goods</p>
         <p class = "pt-5">Cheap, Safe and Personalized.</p>
         <div class = "flex flex-row">
-            <Button text = {"Login"}/>
-        <Button text = {"Get Started"}/>
+            <Button/>
+            
         </div>
     </div>
     <div class = "d3">
