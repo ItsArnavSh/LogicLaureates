@@ -21,8 +21,8 @@ function nextOne()
 let inputValue = '';
   
   function handleSubmit() {
-    answers[i] = inputValue;
-    preference.update(answers);
+    $preference[i] = inputValue;
+    preference.set($preference);
     console.log(inputValue);
     nextOne();
   }
@@ -44,7 +44,7 @@ let inputValue = '';
   </form>
 {/if}
 {:else}
-<button>GO</button>
+<a href = "../rent"><button class = "kalara text-white bg-black rounded-md pl-10 pr-10 p-4 m-4 mt-10 text-2xl">GO</button></a>
 {/if}
 <p>(You can edit these later)</p>
 </div>
