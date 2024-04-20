@@ -27,7 +27,7 @@ export const loginApi = async (email, password) => {
     }
 }
 
-export const loginTokenApi = async()=>{
+export const loginTokenApi = async(token)=>{
     try{
 
         const response = await apiConnector("POST" , authEndpoints.loginToken , {} , {

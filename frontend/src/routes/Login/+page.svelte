@@ -3,7 +3,7 @@
     import {loginApi} from '../../services/operations/auth'
     
     if(token){
-        // loginTokenApi(token);
+        loginTokenApi(token);
     }
 
 
