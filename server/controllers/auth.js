@@ -10,6 +10,7 @@ exports.sendOtp = async (req, res) => {
     try{
 
         const {email} = req.body;
+        console.log("OTP controller");
 
         if(!email){
             res.status(400).json({
@@ -73,8 +74,9 @@ exports.signup = async(req , res)=>{
             });
         }
 
-        const recentOtp = await Otp.findOne({email}).sort({createdAt: -1}).limit(1);
-
+        const recentOtp = await Otp.find({email}).sort({createdAt: -1}).limit(1);
+        console.log(recentOtp);
+        
         if(!recentOtp){
             return res.status(400).json({
                 message: "Otp not valid",
@@ -83,7 +85,7 @@ exports.signup = async(req , res)=>{
         }
 
 
-        if(recentOtp.otp !== otp){
+        if(recentOtp[0].otp !== otp){
             return res.status(400).json({
                 message: "Otp is incorrect",
                 success: false,
@@ -107,7 +109,7 @@ exports.signup = async(req , res)=>{
             accountType,
             additionalDetails: profielDetails._id,
             image: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${firstName}`
-        }).populate('additionalDetails');
+        });
 
         return res.status(200).json({
             success: true,
@@ -123,7 +125,7 @@ exports.signup = async(req , res)=>{
         })
     }
 };
-
+ 
 exports.login = async(req ,res)=>{
     try{
         const {email , password} = req.body;

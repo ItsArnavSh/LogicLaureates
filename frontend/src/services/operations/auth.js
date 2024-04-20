@@ -1,7 +1,8 @@
 import {apiConnector} from '../apiConnector';
 import {authEndpoints} from '../apis';
-import {navigate} from 'svelte-routing';
 import {token , user} from '../../writeables/authWriteables'
+import {goto} from '$app/navigation';
+
 
 export const loginApi = async (email, password) => {
     try{
@@ -13,13 +14,13 @@ export const loginApi = async (email, password) => {
         user.set(response.data.user);
 
         if(response.data.accountType === 'Admin'){
-            navigate('/admin-dashboard');
+            goto('/admin-dashboard');
         }
         else if(response.data.accountType === 'Renter'){
-            navigate('/user-dashboard');
+            goto('/user-dashboard');
         }
         else{
-            navigate('/storage-owner-dashboard');
+            goto('/storage-owner-dashboard');
         }        
 
     } catch(error){
@@ -38,16 +39,39 @@ export const loginTokenApi = async(token)=>{
         user.set(response.data.user);
 
         if(response.data.accountType === 'Admin'){
-            navigate('/admin-dashboard');
+            goto('/admin-dashboard');
         }
         else if(response.data.accountType === 'Renter'){
-            navigate('/user-dashboard');
+            goto('/user-dashboard');
         }
         else{
-            navigate('/storage-owner-dashboard');
+            goto('/storage-owner-dashboard');
         }  
 
         
+
+    } catch(error){
+        console.log(error);
+    }
+}
+
+export const sendOtp = async (email) => {
+    try{
+
+        const response = await apiConnector("POST" , authEndpoints.sendOtp , {email});
+        console.log(response);
+
+    } catch(error){
+        console.log(error);
+    }
+}
+
+export const signup = async (data) => {
+    try{
+            const response = await apiConnector("POST" , authEndpoints.signup , data);
+            console.log(response);
+
+            goto('/Login');
 
     } catch(error){
         console.log(error);

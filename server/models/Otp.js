@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const mailSender = require('../utils/mailSender');
-const {otpTemplate} = require('../mail/templates/emailVerificationTemplate');
 
 const otpSchema = new mongoose.Schema({
     email:{
@@ -11,12 +10,17 @@ const otpSchema = new mongoose.Schema({
     otp:{
         type: String,
         required: true,
-        expiresIn: 300,
+    },
+    createdAt:{
+        type: Date,
+        defaullt: Date.now(),
+        expires: 5*60,
     },
 });
 
-otpSchema.pre('save' , async(next)=>{
-    await mailSender(this.email , "OTP from CloudHome" ,otpTemplate(this.otp));
+otpSchema.pre('save' , async function(next){
+    console.log(this.email);
+    await mailSender(this.email , "OTP from CloudHome" , `Dear User , Your OTP is ${this.otp}`);
     next();
 });
 

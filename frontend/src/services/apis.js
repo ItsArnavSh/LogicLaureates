@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000/api/v1/auth';
+const baseUrl = 'http://localhost:4000/api/v1/auth';
 
 export const authEndpoints  = {
     sendOtp: baseUrl + '/sendOtp',
