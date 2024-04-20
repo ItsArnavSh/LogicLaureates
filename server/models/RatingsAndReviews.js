@@ -13,6 +13,14 @@ const reviewsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    property:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Property",
+    },
 });
 
 module.exports = mongoose.model("RatingsAndReviews" , reviewsSchema);

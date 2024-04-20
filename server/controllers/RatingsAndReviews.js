@@ -15,7 +15,7 @@ exports.createReview= async(req ,res)=>{
             });
         }
 
-        const newReview = await RatingsAndReviews.create({title, review, stars});
+        const newReview = await RatingsAndReviews.create({title, review, stars , user: userId, property: propertyId});
 
         const updatedProperty = await Property.findOneAndUpdate({_id: propertyId}, {$push: {ratingsAndReviews: newReview._id}} , {new: true});
 
@@ -121,6 +121,60 @@ exports.deleteReview = async(req , res)=>{
             success: false,
             error: error.message,
             message: "Something went wrong while deleting review",
+        });
+    }
+}
+
+exports.getAllReviews = async(req , res)=>{
+    try{
+
+        const allReviews = await RatingsAndReviews.find().sort({stars: -1}).populate("user").populate("property");  
+
+        if(!allReviews){
+            return res.status(400).json({
+                success: false,
+                message: "Reviews not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: allReviews,
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            message: "Something went wrong while fetching reviews",
+        });
+    }
+}
+
+exports.getStorageReviews = async(req , res)=>{
+    try{
+
+        const {propertyId} = req.body;
+
+        const propertyReviews = await RatingsAndReviews.findOne({property: propertyId}).populate("user").populate("property").sort({stars: -1});
+
+        if(!property){
+            return res.status(400).json({
+                success: false,
+                message: "Property not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: propertyReviews,
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            message: "Something went wrong while fetching storage reviews",
         });
     }
 }

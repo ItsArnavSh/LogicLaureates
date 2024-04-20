@@ -96,7 +96,7 @@ exports.signup = async(req , res)=>{
             gender: null,
             dateOfBirth: null,
             about: null,
-            contactNumber: null
+            contactNumber: null,
         });
 
         const user = await User.create({
@@ -107,7 +107,7 @@ exports.signup = async(req , res)=>{
             accountType,
             additionalDetails: profielDetails._id,
             image: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${firstName}`
-        });
+        }).populate('additionalDetails');
 
         return res.status(200).json({
             success: true,
@@ -136,7 +136,7 @@ exports.login = async(req ,res)=>{
             });
         }
 
-        const user = await User.findOne({email}).populate("courseProgress");
+        const user = await User.findOne({email}).populate('additionalDetails');
         if(!user){
             return res.status(401).json({
                 success: false,

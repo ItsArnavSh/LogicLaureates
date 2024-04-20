@@ -2,6 +2,7 @@ require('dotenv').config();
 const uploadImageToCloudinary  = require('../utils/uploader');
 const Property = require('../models/Property');
 const cloudDeleter = require('../utils/cloudDeleter');
+const User = require('../models/User');
 
 exports.createStorage = async(req , res)=>{
     try{
@@ -265,6 +266,60 @@ exports.getStoragesByState  = async(req ,res)=>{
             success: false,
             error: error.message,
             message: "Something went wrong while getting lands by state",
+        });
+    }
+}
+
+exports.getRentedLands = async(req ,res)=>{
+    try{
+        const userId = req.user.id;
+
+        const rentedLands = User.findById(userId).populate('rentedListings');
+
+        if(!rentedLands){
+            return res.status(404).json({
+                success: false,
+                message: "No lands found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: rentedLands.rentedListings,
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            message: "Something went wrong while getting rented lands",
+        });
+    }
+}
+
+exports.getOwnedLands = async(req ,res)=>{
+    try{
+        const userId = req.user.id;
+
+        const ownedLands = User.findById(userId).populate('listings');
+
+        if(!ownedLands){
+            return res.status(404).json({
+                success: false,
+                message: "No lands found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: ownedLands.listings,
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            message: "Something went wrong while getting owned lands",
         });
     }
 }
