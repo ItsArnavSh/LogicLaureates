@@ -12,7 +12,7 @@
     function accountChange(){
         accountType = document.getElementById('accountType').value;
     }
-    function otpHandler(e){
+    function otpHandler(){
         console.log(email);
         sendOtp(email);
     }
