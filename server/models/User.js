@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     },
     chats:{
         type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Messages',
+        ref: 'Chats',
     },
     listings:{
         type: [mongoose.Schema.Types.ObjectId],

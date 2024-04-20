@@ -14,6 +14,7 @@ const authRoutes = require('./routes/Auth');
 const storageRoutes = require('./routes/Storage');
 const ratingsRoutes = require('./routes/RatingsAndReviews');
 const cors = require('cors');
+const { createMessage } = require('./controllers/Chat');
 
 const app = express();
 
@@ -44,15 +45,26 @@ app.use('/api/v1/auth' , authRoutes);
 app.use('/api/v1/storage' , storageRoutes);
 app.use('/api/v1/ratings' , ratingsRoutes);
 
+const server = createServer(app);
+const io = new Server(server);
+
 io.on('connection', (socket) => { 
 
-    socket.on('send name', (username) => { 
-        socket.join(username);
+    socket.on('join-room', (userId1 , userId2) => {
+        const roomId = userId1+userId2; 
+        console.log("User joined room" , roomId);
+
+        socket.join(roomId);
     }); 
   
-    socket.on('send message', (chat) => { 
-        io.to(chat.room).emit('send message', (chat));
-    }); 
+    socket.on('send message', (userId1 , userId2, messageData) => {
+        console.log('Message from', userId1);
+        const roomId = userId1+userId2; 
+        io.to(roomId).emit('receive message', messageData);
+
+        createMessage(userId1 , userId2, messageData);
+
+    });
 }); 
 
 app.listen(PORT , ()=>{
