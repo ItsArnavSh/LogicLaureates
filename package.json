@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^1.6.8"
-  },
-  "devDependencies": {
-    "dotenv": "^16.4.5",
-    "rollup-plugin-replace": "^2.2.0"
-  }
-}
