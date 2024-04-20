@@ -1,4 +1,4 @@
-const Property = require("../models/Property");
+const Property = require("../models/Properties");
 const mailSender = require("../utils/mailSender");
 
 exports.approveStorage = async(req , res)=>{

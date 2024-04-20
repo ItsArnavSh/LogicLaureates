@@ -1,19 +1,19 @@
 require('dotenv').config();
 const uploadImageToCloudinary  = require('../utils/uploader');
-const Property = require('../models/Property');
+const Property = require('../models/Properties');
 const cloudDeleter = require('../utils/cloudDeleter');
 const User = require('../models/User');
 
 exports.createStorage = async(req , res)=>{
     try{
-        const {propertyName , description , space , type , address , zipCode , access , monthlyPrice , yearlyPrice , weeklyPrice , dailyPrice} = req.body;
+        const {propertyName , description , space , type , address , zipCode , access , monthlyPrice , yearlyPrice , weeklyPrice , dailyPrice , city} = req.body;
 
         const thumbnail = req.files.thumbnail;
         const additionalImages = req.files.additionalImages || [];
         const videos = req.files.videos || [];
         const propertyPapers = req.files.propertyPapers;
 
-        if(!propertyName || !description || !space || !type || !address || !zipCode || !access || !monthlyPrice || !yearlyPrice || !weeklyPrice || !dailyPrice || !thumbnail || !propertyPapers){
+        if(!propertyName || !description || !space || !type || !address || !zipCode || !access || !monthlyPrice || !yearlyPrice || !weeklyPrice || !dailyPrice || !thumbnail || !propertyPapers || !city){
             return res.status(400).json({
                 success: false,
                 message: "All fields are required",
@@ -45,6 +45,7 @@ exports.createStorage = async(req , res)=>{
             description,
             space,
             type,
+            city , 
             address,
             zipCode,
             access,

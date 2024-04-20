@@ -1,6 +1,6 @@
 const express = require('express');
 const dbConnect  = require('./config/database');
-const cloudinaryConnect = require('./config/cloudinary');
+const {cloudinaryConnect} = require('./config/cloudinary');
 require('dotenv').config();
 const { createServer } = require('node:http');
 const { join } = require('node:path');
@@ -14,7 +14,7 @@ const authRoutes = require('./routes/Auth');
 const storageRoutes = require('./routes/Storage');
 const ratingsRoutes = require('./routes/RatingsAndReviews');
 const cors = require('cors');
-const { createMessage } = require('./controllers/Chat');
+const { createMessage } = require('./controllers/Messages');
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use(fileUploader({
 
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: "http://localhost:5173",
         credentials: true 
        
     })

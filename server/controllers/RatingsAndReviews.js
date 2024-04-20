@@ -1,6 +1,6 @@
 const RatingsAndReviews = require("../models/RatingsAndReviews");
 const User = require("../models/User");
-const Property = require("../models/Property");
+const Property = require("../models/Properties");
 
 exports.createReview= async(req ,res)=>{
     try{

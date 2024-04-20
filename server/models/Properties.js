@@ -11,6 +11,11 @@ const propertySchema = new mongoose.Schema({
         required: true , 
         trim: true,
     },
+    city:{
+        type:String , 
+        required: true , 
+        trim: true,
+    },
     propertyPapers:{
         type: String , 
         required: true,

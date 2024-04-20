@@ -112,11 +112,11 @@ exports.deleteMessage = async(req, res)=>{
 
 // }
 
-exports.getMessages = async(res , res)=>{
+exports.getMessages = async(req , res)=>{
     try{
         const {userId1 , userId2} = req.body;
 
-        const chat = await Chat.find({User: [userId1 , userId2]}).populate('messages').;
+        const chat = await Chat.find({User: [userId1 , userId2]}).populate('messages');
 
         if(!chat){
             return res.status(400).json({
