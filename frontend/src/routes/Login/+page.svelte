@@ -1,23 +1,16 @@
 <script>
-
-    import { onMount, createEventDispatcher } from 'svelte';
-
-    export let email = ''; 
-    export let password = '';
-    let dispatch = createEventDispatcher();
-
-
-    function handleChange(event) {
-    email = event.target.value;
-    password = event.target.value
-    dispatch('change', { value });
-    }
+    
+    let email = '';
+    let password = '';
 
 </script>
 
 <div class="w-[100vw] h-[100vh] flex flex-col items-center">
     <div class="bg-[#CBCDA9] h-[20%] w-full"></div>
     <form>
-
+        <label for="email">Email</label>
+        <input type="email" id="email" bind:value={email} />
+        <label for="password">Password</label>
+        <input type="password" id="password" bind:value={password} />
     </form>
 </div>
