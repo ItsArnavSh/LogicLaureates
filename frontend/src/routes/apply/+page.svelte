@@ -5,6 +5,9 @@
   let documents = [];
   let city = '';
   let state = '';
+  let price = 0;
+  let preference = '';
+  let additionalInfo = '';
   const statesOfIndia = [
     'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh', 'Dadra and Nagar Haveli', 'Daman and Diu', 'Delhi', 'Lakshadweep', 'Puducherry'
   ];
@@ -13,7 +16,11 @@
     console.log(data);
     //data can be sent to backend
   }
+  const preferenceOptions = ['Long term storage', 'Short term storage', 'Climate controlled', '24/7 access', 'Drive up access'];
 
+  function handlePreferenceChange(event) {
+    preferences = Array.from(event.target.selectedOptions, option => option.value);
+  }
   function handleFileChange(event, target) {
     target.push(...event.target.files);
   }
@@ -65,7 +72,26 @@
       <label for="documents">Legal Documents for Verification</label>
       <input id="documents" type="file" multiple on:change={(e) => handleFileChange(e, documents)} required>
     </div>
-  
+    
+    <div class="form-control">
+      <label>Storage Duration</label>
+      <div>
+        <input id="shortTerm" type="radio" bind:group={preference} value="Short term storage">
+        <label for="shortTerm">Short term storage</label>
+      </div>
+      <div>
+        <input id="longTerm" type="radio" bind:group={preference} value="Long term storage">
+        <label for="longTerm">Long term storage</label>
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="price">Price (in Rupees per night)</label>
+      <input id="price" type="number" min="0" bind:value={price} required>
+    </div>
+    <div class="form-control">
+      <label for="additionalInfo">Additional Information</label>
+      <textarea id="additionalInfo" bind:value={additionalInfo}></textarea>
+    </div>
     <button type="submit" class = "">Submit</button>
   </form>
 </div>
