@@ -8,12 +8,12 @@
   preference.subscribe((value)=>{answers = value;})
   question.subscribe((value)=>{questions = value;})
   let locations = [
-    {state : false,name:"sample1"},
-    {state : false,name:"sample2"},
-    {state : false,name:"sample3"},
-    {state : false,name:"sample4"},
-    {state : false,name:"sample5"},
-    {state : false,name:"sample6"},
+    {
+      thumbnail : "https://ats-heritage.co.uk/wp-content/uploads/2016/09/iStock_96204197_XLARGE.jpg",
+      area:50,
+      price:250,
+      city:"noida",
+  }
   ];
 </script>
 <style>
