@@ -23,7 +23,21 @@ export const pendingProperties = async(token)=>{
 
         return response.data.data;
         console.log(response.data.data);
-        
+
+    } catch(error){
+        console.log(error);
+    }
+}
+
+export const getPublishedLands = async(token)=>{
+    try{    
+
+        const response = await apiConnector("GET", landEndpoints.PublishedLands ,{}, {"Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`}); 
+
+
+        return response.data.data;
+
     } catch(error){
         console.log(error);
     }

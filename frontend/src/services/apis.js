@@ -1,4 +1,3 @@
-
 const authbaseUrl = 'http://localhost:4000/api/v1/auth';
 const landBaseUrl = 'http://localhost:4000/api/v1/storage';
 const adminBaseUrl = 'http://localhost:4000/api/v1/admin';
@@ -17,4 +16,5 @@ export const landEndpoints = {
     createLand: landBaseUrl + '/create-storage',
     getPendingLands: adminBaseUrl + '/get-draft-lands',
     approveStorage:adminBaseUrl + '/approve-storage',
+    PublishedLands: landBaseUrl + '/all-storages', 
 }

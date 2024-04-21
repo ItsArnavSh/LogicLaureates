@@ -11,4 +11,4 @@ exports.cloudinaryConnect = ()=>{
         console.error(error);
         console.log("Can't connect to cloudinary");
     }
-}
+} 
