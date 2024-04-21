@@ -13,10 +13,10 @@ export const loginApi = async (email, password) => {
         token.set(response.data.token);
         user.set(response.data.user);
 
-        if(response.data.accountType === 'Admin'){
+        if(response.data.user.accountType === 'Admin'){
             goto('/admin-dashboard');
         }
-        else if(response.data.accountType === 'Renter'){
+        else if(response.data.user.accountType === 'Renter'){
             goto('/user-dashboard');
         }
         else{
