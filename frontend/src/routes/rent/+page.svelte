@@ -31,6 +31,8 @@
         <input type="checkbox" bind:checked={ answers[i]} on:change={() => {$preference[i] = answers[i]; preference.set($preference);}}>
       </span>
     </label>
+    {:else if ques[1]==2}
+      <span class = "">{ques[2]} : {answers[i]}</span>
     {:else}
     <div class = "flex flex-row">
       {ques[2]}:
