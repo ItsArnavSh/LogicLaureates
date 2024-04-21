@@ -21,7 +21,7 @@ export const pendingProperties = async(token)=>{
         const response = await apiConnector("GET", landEndpoints.getPendingLands ,{}, {"Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`});
 
-        return response;
+        return response.data.data;
     } catch(error){
         console.log(error);
     }
