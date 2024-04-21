@@ -34,12 +34,13 @@ fetchLands();
         {:else}
         <div class="flex justify-evenly flex-wrap">
             {#each lands as land , i}
-                <div class="flex gap-4">
-                    <div class="flex flex-col jusitify-evenly w-full">
-                        <div>{land.propertyName}</div>
+                <div class="flex gap-4 m-4 border-black border-3 justify-center items-center">
+                    <div class="flex flex-col jusitify-evenly w-full m-1">
+                        <div class = "">{land.propertyName}</div>
                         <div>State: {land.state}</div>
                         <div>City: {land.city}</div>
                         <div>Monthly Price: {land.monthlyPrice}</div>
+                        <button class = "kalara text-white bg-black rounded-md p-2 m-1 mt-10 text-xl">Buy</button>
                     </div>
                     <div>
                         <img src={land.thumbnail} class="w-[200px]" alt="">
