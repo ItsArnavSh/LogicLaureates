@@ -15,7 +15,7 @@ exports.resetPasswordToken = async(req,res)=>{
                 success: false,
                 message: "Your email is not registered with us",
             });
-        }
+        } 
 
 
         const token = crypto.randomUUID(); 

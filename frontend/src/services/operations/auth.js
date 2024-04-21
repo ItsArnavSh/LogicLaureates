@@ -38,6 +38,8 @@ export const loginTokenApi = async(token)=>{
 
         user.set(response.data.user); 
 
+        return response
+
     } catch(error){
         logout();
         console.log(error);

@@ -5,14 +5,17 @@
   let documents = [];
   let city = '';
   let state = '';
-  let price = 0;
+  let priceDaily = 0;
+  let priceWeekly = 0;
+  let priceMonthly = 0;
+  let priceYearly = 0;
   let preference = '';
   let additionalInfo = '';
   const statesOfIndia = [
     'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh', 'Dadra and Nagar Haveli', 'Daman and Diu', 'Delhi', 'Lakshadweep', 'Puducherry'
   ];
   function handleSubmit() {
-    const data = { address, area, files, documents ,state ,city};
+    const data = { address, area, files, documents ,state ,city, preference,additionalInfo,priceDaily,priceMonthly,priceWeekly,priceYearly};
     console.log(data);
     //data can be sent to backend
   }
@@ -85,8 +88,20 @@
       </div>
     </div>
     <div class="form-control">
-      <label for="price">Price (in Rupees per night)</label>
-      <input id="price" type="number" min="0" bind:value={price} required>
+      <label for="price">Price (in Rupees per Day)</label>
+      <input id="price" type="number" min="0" bind:value={priceDaily} required>
+    </div>
+    <div class="form-control">
+      <label for="price">Price (in Rupees per Week)</label>
+      <input id="price" type="number" min="0" bind:value={priceWeekly} required>
+    </div>
+    <div class="form-control">
+      <label for="price">Price (in Rupees per Month)</label>
+      <input id="price" type="number" min="0" bind:value={priceMonthly} required>
+    </div>
+    <div class="form-control">
+      <label for="price">Price (in Rupees per Year)</label>
+      <input id="price" type="number" min="0" bind:value={priceYearly} required>
     </div>
     <div class="form-control">
       <label for="additionalInfo">Additional Information</label>
