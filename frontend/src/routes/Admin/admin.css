@@ -1,0 +1,20 @@
+#footer{
+    background-color: #CBCDA9;
+    height: 150px;
+    width:100%
+}
+.navbar {
+    background-color: #CBCDA9;
+}
+
+#user{
+   border-radius: 50%; 
+}
+
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    
+}
