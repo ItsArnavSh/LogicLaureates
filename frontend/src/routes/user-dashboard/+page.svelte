@@ -36,7 +36,7 @@ fetchLands();
             {#each lands as land , i}
                 <div class="flex gap-4 m-4 border-black border-3 justify-center items-center">
                     <div class="flex flex-col jusitify-evenly w-full m-1">
-                        <div class = "">{land.propertyName}</div>
+                        <div class = "text-xl">{land.propertyName}</div>
                         <div>State: {land.state}</div>
                         <div>City: {land.city}</div>
                         <div>Monthly Price: {land.monthlyPrice}</div>
