@@ -21,9 +21,6 @@
   }
   const preferenceOptions = ['Long term storage', 'Short term storage', 'Climate controlled', '24/7 access', 'Drive up access'];
 
-  function handlePreferenceChange(event) {
-    preferences = Array.from(event.target.selectedOptions, option => option.value);
-  }
   function handleFileChange(event, target) {
     target.push(...event.target.files);
   }
