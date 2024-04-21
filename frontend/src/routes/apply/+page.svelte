@@ -36,7 +36,6 @@
         Register Your Property
       </p>
 <form on:submit|preventDefault={handleSubmit}>
-
     <div class="form-control">
         <label for="state">Choose your State: </label>
         <select id="state" bind:value={state} required>
