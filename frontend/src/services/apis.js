@@ -1,6 +1,7 @@
 const authbaseUrl = 'http://localhost:4000/api/v1/auth';
 const landBaseUrl = 'http://localhost:4000/api/v1/storage';
 const adminBaseUrl = 'http://localhost:4000/api/v1/admin';
+const paymentBaseUrl = 'http://localhost:4000/api/v1/payments'
 
 export const authEndpoints  = {
     sendOtp: authbaseUrl + '/sendOtp',
@@ -17,4 +18,9 @@ export const landEndpoints = {
     getPendingLands: adminBaseUrl + '/get-draft-lands',
     approveStorage:adminBaseUrl + '/approve-storage',
     PublishedLands: landBaseUrl + '/all-storages', 
+}
+
+export const paymentEndpoints = {
+    capturePayment: paymentBaseUrl + "/capturePayment",
+    verifyPayment: paymentBaseUrl + '/verifyPayment',
 }

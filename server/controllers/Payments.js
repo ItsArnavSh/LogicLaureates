@@ -1,13 +1,15 @@
 const mailSender = require("../utils/mailSender");
 const User = require('../models/User');
 const Property = require('../models/Properties');
+const {default:mongoose} = require('mongoose');
+const {instance} = require('../config/razorpay')
+const crypto = require('crypto')
 
 exports.capturePayment = async(req , res)=>{
     try{
         const {lands} = req.body;
         const userId = req.user.id;
-
-        if(lands.leghth === 0){
+        if(lands.length === 0){
             return res.json({
                 success: false,
                 message: "No lands selected",
@@ -16,7 +18,7 @@ exports.capturePayment = async(req , res)=>{
 
         let totalAmount = 0;
         const uid = new mongoose.Types.ObjectId(userId);
-
+        console.log("INSIDE");
         for(const land_id of lands){
             let land;
             try{
@@ -34,24 +36,26 @@ exports.capturePayment = async(req , res)=>{
                         message: "You have already rented this land",
                     });
                 }
-
-                totalAmount += land.price;
+                console.log("FOR LOOP PAYMENT");
+                totalAmount += land.monthlyPrice;
             } catch(error){
                 return res.status(500).json({
-                    success: false,
+                    success: false, 
                     error: error.message,
                     message: "Something went wrong while capturing payment",
                 })
             }
         }
 
+
         const options = {
             amount: totalAmount*100,
             currency: "INR",
             receipt: Math.random(Date.now()).toString(), 
         }
+        console.log(options);
+        const paymentResponse = await instance.orders.create(options);    
         
-        const paymentResponse = await instance.orders.create(options);        
         return res.status(200).json({
             success: true,
             orderId: paymentResponse.id,

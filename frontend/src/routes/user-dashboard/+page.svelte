@@ -3,14 +3,20 @@
 </style>
 <script>
 import Navbar from "../../commonComponents/Navbar.svelte"
-import {token} from '../../writeables/authWriteables'
+import {token , user} from '../../writeables/authWriteables'
 import {getPublishedLands} from '../../services/operations/land'
+import {buyCourse} from '../../services/operations/payments'
+
 
 $:lands = null;
 
 async function fetchLands(){
     lands = await getPublishedLands($token);
     console.log(lands);
+}
+
+async function payments(landId){
+    buyCourse($token , [landId] , $user);
 }
 
 fetchLands();
@@ -40,7 +46,7 @@ fetchLands();
                         <div>State: {land.state}</div>
                         <div>City: {land.city}</div>
                         <div>Monthly Price: {land.monthlyPrice}</div>
-                        <button class = "kalara text-white bg-black rounded-md p-2 m-1 mt-10 text-xl">Buy</button>
+                        <button class = "kalara text-white bg-black rounded-md p-2 m-1 mt-10 text-xl" on:click={()=>payments(land._id)}>Buy</button>
                     </div>
                     <div>
                         <img src={land.thumbnail} class="w-[200px]" alt="">
