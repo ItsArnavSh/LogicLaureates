@@ -14,7 +14,7 @@ exports.createReview= async(req ,res)=>{
                 message: "Please fill all fields",
             });
         }
-
+ 
         const newReview = await RatingsAndReviews.create({title, review, stars , user: userId, property: propertyId});
 
         const updatedProperty = await Property.findOneAndUpdate({_id: propertyId}, {$push: {ratingsAndReviews: newReview._id}} , {new: true});

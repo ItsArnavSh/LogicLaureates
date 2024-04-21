@@ -37,11 +37,14 @@ export const buyCourse = async (token , lands , userDetails) => {
         currency: orderRes.data.currency,
         amount: orderRes.data.amount,
         order_id: orderRes.data.orderId,
-        name: "CloudHome",
+        name: "Ampl",
         description: "Thank you for renting the land",
         prefill: {
             name: userDetails.firstName,
             email: userDetails.email
+        },
+        theme:{
+            color: '#000000'
         },
         handler: function(response){
             verfiyPayment({...response , lands} , token);

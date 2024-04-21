@@ -48,7 +48,7 @@
   }
 </style>
   
-<button on:click={toggleSize} on:dblclick={shrink}>
+<button on:dblclick={shrink}>
   <div class="border border-black pos rounded-md {name}" style="height: {size.height}; width: {size.width};">
     {#if state}
     <p>Double Click to Shrink</p>
