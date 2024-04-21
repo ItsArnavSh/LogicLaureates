@@ -14,7 +14,7 @@ export const loginApi = async (email, password) => {
         user.set(response.data.user);
 
         if(response.data.user.accountType === 'Admin'){
-            goto('/admin-dashboard');
+            goto('/Admin');
         }
         else if(response.data.user.accountType === 'Renter'){
             goto('/user-dashboard');
