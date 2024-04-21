@@ -5,6 +5,6 @@ const {approveStorage , getDraftLands} = require('../controllers/Admin');
 const { auth ,  isAdmin } = require('../middlewares/auth');
 
 router.post('/approve-storage' , auth , isAdmin , approveStorage);
-router.get('/get-draft-lands' , auth , isAdmin , getDraftLands)
+router.get('/get-draft-lands' , auth  , getDraftLands);
 
 module.exports = router;

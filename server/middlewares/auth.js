@@ -57,7 +57,7 @@ exports.isAdmin = async(req , res , next)=>{
 
 exports.isOwner = async(req , res , next)=>{
     try{
-        if(req.user.id !== "Storage Owner"){
+        if(req.user.accountType !== "Storage Owner"){
             return res.status(403).json({
                 success: false,
                 message: "You are not authorized to access this route",
@@ -75,7 +75,7 @@ exports.isOwner = async(req , res , next)=>{
 
 exports.isRenter = async(req , res , next)=>{
     try{
-        if(req.user.id !== "Renter"){
+        if(req.user.accountType !== "Renter"){
             return res.status(403).json({
                 success: false,
                 message: "You are not authorized to access this route",

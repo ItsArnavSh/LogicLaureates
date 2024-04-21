@@ -14,4 +14,4 @@ router.post('/create-storage' , auth , isOwner , createStorage);
 router.put('/edit-storage' , auth , isOwner , editStorage);
 router.delete('/delete-storage' , auth , isOwner , deleteStorage);
 
-module.exports = router;
+module.exports = router; 

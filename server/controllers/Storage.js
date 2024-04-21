@@ -1,5 +1,5 @@
 require('dotenv').config();
-const uploadImageToCloudinary  = require('../utils/uploader');
+const {uploadImageToCloudinary}  = require('../utils/uploader');
 const Property = require('../models/Properties');
 const cloudDeleter = require('../utils/cloudDeleter');
 const User = require('../models/User');
@@ -7,6 +7,8 @@ const User = require('../models/User');
 exports.createStorage = async(req , res)=>{
     try{
         const {propertyName , description , space , type , address , zipCode , access , monthlyPrice , yearlyPrice , weeklyPrice , dailyPrice , city} = req.body;
+
+        console.log(propertyName , description , space , type , address , zipCode , access  , monthlyPrice , yearlyPrice , dailyPrice , weeklyPrice , city);
 
         const thumbnail = req.files.thumbnail;
         const additionalImages = req.files.additionalImages || [];
