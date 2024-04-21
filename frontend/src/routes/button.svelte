@@ -10,10 +10,10 @@
       loginTokenApi($token)
         .then((response) => {
           // After login, determine which dashboard to redirect to
-          const accountType = response.data.accountType;
+          const accountType = response.data.user.accountType;
           console.log(accountType);
           if (accountType === 'Admin') {
-            dashboard = '/admin-dashboard';
+            dashboard = '/Admin';
           } else if (accountType === 'Renter') {
             dashboard = '/user-dashboard';
           } else {

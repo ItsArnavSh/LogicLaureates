@@ -1,6 +1,14 @@
 <script>
-    export let state = false;
-    export let name;
+    export let state;
+    export let propertyName;
+    export let propertyPapers;
+    export let monthlyPrice;
+    export let access;
+    export let thumbnail;
+    export let _id;
+    import {token} from '../../writeables/authWriteables'
+    import {storageApproval} from '../../services/operations/admin'
+    
     let size = {width: '20vw', height: '30vh'};
   
     function toggleSize() {
@@ -24,6 +32,11 @@
         exp.style.top = "auto";
         exp.style.left = "auto";
     }
+
+    async function rejetcApprove(response){
+      await storageApproval(response , _id , $token);
+
+    }
 </script>
   
 <style>
@@ -39,9 +52,29 @@
   <div class="border border-black pos rounded-md {name}" style="height: {size.height}; width: {size.width};">
     {#if state}
     <p>Double Click to Shrink</p>
-    Hello
+    
     {:else}
-    Hello Again
+    <div>
+      <h1>{propertyName}</h1>
+      <img src={thumbnail} alt="">
+    </div>
+      <div>
+        <div>
+          <h1>{propertyName}</h1>
+          <p>{state}</p>
+          <p>Monthly Price: {monthlyPrice}</p>
+          <p>Access: {access}</p>
+          <div>
+            <button on:click={()=>rejetcApprove(1)}>Approve</button>
+            <button on:click={()=>rejetcApprove(0)}>Reject</button>
+          </div>
+        </div>
+          <div>
+            <h2>Legal Document:</h2>
+            <img src={propertyPapers} alt="">
+          </div>
+      </div>
+
     {/if}
   </div>
 </button>

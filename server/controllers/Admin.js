@@ -1,4 +1,5 @@
 const Property = require("../models/Properties");
+const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 
 exports.getDraftLands = async(req, res)=>{
@@ -31,6 +32,11 @@ exports.approveStorage = async(req , res)=>{
     try{
 
         const {response  , propertyId} = req.body;
+
+        const userId = req.user.id;
+
+        const user = await User.findById(userId);
+        console.log(user);
         
         if(!response){
             const deletedProperty  = await Property.deleteOne({_id: propertyId}).populate("Owner");
@@ -40,7 +46,7 @@ exports.approveStorage = async(req , res)=>{
                     message: "Property not found",
                 });
             }
-            await mailSender(deletedProperty.email  , "Property Rejected" , "Your property has been rejected");
+            await mailSender(user.email  , "Property Rejected" , "Your property has been rejected");
             return res.status(200).json({
                 success: true,
                 message: "Property rejected successfully",
@@ -56,7 +62,7 @@ exports.approveStorage = async(req , res)=>{
             });
         }
 
-        await mailSender(approvedProperty.email , "Property Approved" , "Your property has been approved");
+        await mailSender(user.email , "Property Approved" , "Your property has been approved");
 
         return res.status(200).json({
             success: true,
