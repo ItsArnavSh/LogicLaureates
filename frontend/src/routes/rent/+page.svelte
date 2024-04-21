@@ -2,6 +2,8 @@
   import {preference,question} from "../../writeables/preferences"
 	import Button from "../button.svelte";
   import Option from "./sampleRent.svelte"
+  import navbar from "../../commonComponents/Navbar.svelte"
+	import Navbar from "../../commonComponents/Navbar.svelte";
   let answers,questions;
   preference.subscribe((value)=>{answers = value;})
   question.subscribe((value)=>{questions = value;})
@@ -17,6 +19,7 @@
 <style>
 
 </style>
+<Navbar />
 <div class = "flex flex-col items-center w-[100vw]">
   <p class = "caveat text-8xl p-7">
     Choose your Vault
