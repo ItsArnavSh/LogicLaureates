@@ -8,8 +8,8 @@
             
         </div>
     </div>
-    <div class = "d3">
-        <img src = "hands.jpg" > 
+    <div class = "d3 ml-10">
+        <img src = "hands.jpg" class = ""> 
     </div>
 </div>
 </div>
