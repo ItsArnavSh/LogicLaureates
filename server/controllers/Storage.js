@@ -195,7 +195,7 @@ exports.nearbyStorages = async(req , res)=>{
     try{
         const {zipCode} = req.body;
 
-        const properties = await Property.find({zipCode});
+        const properties = await Property.find({zipCode , status: "Published"});
 
         if(!properties){
             return res.status(404).json({
@@ -221,7 +221,7 @@ exports.nearbyStorages = async(req , res)=>{
 exports.allStorages = async(req , res)=>{
     try{
 
-        const properties = await Property.find();
+        const properties = await Property.find({status: "Published"});
 
         if(!properties){
             return res.status(404).json({
@@ -248,7 +248,7 @@ exports.getStoragesByState  = async(req ,res)=>{
     try{
         const {state} = req.body;
 
-        const properties = await Property.find({state});
+        const properties = await Property.find({state , status: "Published"});
 
         if(!properties){
             return res.status(404).json({
@@ -322,5 +322,52 @@ exports.getOwnedLands = async(req ,res)=>{
             error: error.message,
             message: "Something went wrong while getting owned lands",
         });
+    }
+}
+
+exports.getStoragesByFaq = async(req, res)=>{
+    try{
+
+        const {state , dailyPrice , weeklyPrice , monthlyPrice , yearlyPrice} =req.body;
+
+        if(!state){
+            return res.status(400).json({
+                success: false ,
+                message: "State is required",
+            });
+        }
+
+        let properties;
+        if(dailyPrice){
+            properties = await Property.find({state , dailyPrice});
+        }
+        else if(weeklyPrice){
+            properties = await Property.find({state , weeklyPrice});
+        }
+        else if(monthlyPrice){
+            properties = await Property.find({state , monthlyPrice});
+        }
+        else if(yearlyPrice){
+            properties  = await Property.find({state , yearlyPrice}); 
+        }
+        else{
+            return res.status(400).json({
+                success: false , 
+                message:"Price is required",
+            });
+        }
+
+        return res.status(200).json({
+            success: true , 
+            message: "Successfully fetched faq  properties",
+            data: properties,
+        });
+
+    } catch(error){
+        return res.status(500).json({
+            success: false , 
+            message:"Something went wrong while fetching lands by faq",
+
+        })
     }
 }

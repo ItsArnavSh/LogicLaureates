@@ -20,7 +20,7 @@ router.get('/login-token' , auth , async(req , res)=>{
     const user = await User.findById(req.user.id).populate('additionalDetails');
 
     res.status(200).json({
-        data: user,
+        user,
         success: true,
         message: "User is logged in",
     });
