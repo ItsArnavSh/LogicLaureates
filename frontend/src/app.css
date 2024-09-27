@@ -3,26 +3,40 @@
 @tailwind utilities;
 
 .caveat {
-  font-family: "Caveat", cursive;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
+	font-family: 'Caveat', cursive;
+	font-optical-sizing: auto;
+	font-weight: 100;
+	font-style: normal;
 }
 .karla {
-  font-family: "Karla", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
+	font-family: 'Karla', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 100;
+	font-style: normal;
 }
 .courgette {
-  font-family: "Courgette", cursive;
-  font-weight: 400;
-  font-style: normal;
+	font-family: 'Courgette', cursive;
+	font-weight: 400;
+	font-style: normal;
 }
 
 .outfit {
-  font-family: "Outfit", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+	font-family: 'Outfit', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 400;
+	font-style: normal;
+}
+* {
+	color: white;
+}
+.coda {
+	font-family: 'Coda', system-ui;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.coda-extrabold {
+	font-family: 'Coda', system-ui;
+	font-weight: 800;
+	font-style: normal;
 }
