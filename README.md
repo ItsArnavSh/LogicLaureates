@@ -1,1 +1,1 @@
-# LogicLaureates
+# Ampl
