@@ -43,12 +43,12 @@ export const getPublishedLands = async(token)=>{
     }
 }
 
-export const getStorageById = async(token , data){
+export const getStorageById = async(token , data)=>{
     try{
 
-        const  response = await apiConnector("GET", landEndpoints.getStorageById + `/${data.id}` , {} , {"Content-Type": "multipart/form-data",
+        const  response = await apiConnector("PUT", landEndpoints.getStorageById + `/${data.id}` , data , {"Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`});
-    
+        console.log(response);
         return response.data.data;
 
     } catch(error){
