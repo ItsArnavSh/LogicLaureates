@@ -18,6 +18,7 @@ export const landEndpoints = {
     getPendingLands: adminBaseUrl + '/get-draft-lands',
     approveStorage:adminBaseUrl + '/approve-storage',
     PublishedLands: landBaseUrl + '/all-storages', 
+    getStorageById: landBaseUrl
 }
 
 export const paymentEndpoints = {

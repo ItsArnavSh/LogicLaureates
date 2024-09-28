@@ -2,6 +2,7 @@ import {apiConnector} from '../apiConnector';
 import {authEndpoints} from '../apis';
 import {token , user} from '../../writeables/authWriteables'
 import {goto} from '$app/navigation';
+import {toasts} from 'svelte-toasts'
 
 
 export const loginApi = async (email, password) => {
@@ -12,6 +13,8 @@ export const loginApi = async (email, password) => {
         localStorage.setItem('token', response.data.token);
         token.set(response.data.token);
         user.set(response.data.user);
+
+        toasts.success("Logged in");
 
         if(response.data.user.accountType === 'Admin'){
             goto('/Admin');
@@ -24,6 +27,7 @@ export const loginApi = async (email, password) => {
         }        
 
     } catch(error){
+        toasts.error(error.message);
         console.log(error);
     }
 }

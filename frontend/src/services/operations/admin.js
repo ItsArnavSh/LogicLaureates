@@ -1,4 +1,5 @@
 import { apiConnector } from "../apiConnector";
+import {toasts} from 'svelte-toasts'
 import { landEndpoints } from "../apis";
 
 export const storageApproval = async(response , _id , token)=>{
@@ -9,9 +10,11 @@ export const storageApproval = async(response , _id , token)=>{
             Authorization: `Bearer ${token}`,
         });
 
-        console.log("Successfully recorded admin's response");
+        console.log("Successfully recorded admin's response", res);
+        toasts.success("Approved");
 
     } catch(error){
+        toasts.error("Error approving");
         console.log(error);
     }
 }

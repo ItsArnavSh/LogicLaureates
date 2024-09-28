@@ -15,7 +15,7 @@ function loadScript(src){
     })
 }
 
-export const buyCourse = async (token , lands , userDetails) => {
+export const buyStorage = async (token , lands , userDetails) => {
 
     try{
        const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
@@ -27,7 +27,7 @@ export const buyCourse = async (token , lands , userDetails) => {
        const orderRes = await apiConnector("POST" , paymentEndpoints.capturePayment  , {lands} , {Authorization: `Bearer ${token}`});
 
        if(!orderRes.data.success){
-        toast.error("Failed to create order");
+        // toast.error("Failed to create order");
         throw new Error(orderRes.data.message);
        }
     //    console.log(orderRes);

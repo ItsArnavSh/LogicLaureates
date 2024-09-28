@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Calendar } from "@/components/ui/calendar"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { toast } from "@/components/ui/use-toast"
+<script>
+	import { getStorageById } from "../services/operations/land";
+  import { token, user } from '../../writeables/authWriteables';
+  import React, { useState, useEffect } from 'react'
+  import { useRouter } from 'next/router'
+  import { Button } from "@/components/ui/button"
+  import { Input } from "@/components/ui/input"
+  import { Calendar } from "@/components/ui/calendar"
+  import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+  import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-// Mock function for booking API call
-const bookProperty = async (bookingDetails) => {
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  return { success: true, message: "Booking successful!" }
-}
+  const bookProperty = async (bookingDetails) => {
+    await buyCourse()
+  }
+
+
+</script>
 
 export default function Component() {
   const router = useRouter()
@@ -25,20 +27,8 @@ export default function Component() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Fetch property details
-    // This is a mock implementation. Replace with actual API call.
     const fetchProperty = async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setProperty({
-        id: id,
-        name: "Sample Property",
-        description: "A beautiful storage space for your needs.",
-        dailyPrice: 50,
-        weeklyPrice: 300,
-        monthlyPrice: 1000,
-        yearlyPrice: 10000,
-      })
+      await getStorageById($token, {id});
     }
 
     if (id) {
