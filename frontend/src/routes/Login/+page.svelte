@@ -32,6 +32,7 @@
 					<label for="password" class="block text-sm font-medium mb-2">Password</label>
 					<input
 						id="password"
+						type="password"
 						bind:value={password}
 						class="w-full px-3 py-2 bg-white/20 rounded-md placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
 						placeholder="Enter your password"

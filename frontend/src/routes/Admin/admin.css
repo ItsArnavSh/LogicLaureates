@@ -1,4 +1,4 @@
-#footer{
+/*#footer{
     background-color: #CBCDA9;
     height: 150px;
     width:100%
@@ -8,7 +8,7 @@
 }
 
 #user{
-   border-radius: 50%; 
+   border-radius: 50%;
 }
 
 #footer{
@@ -16,5 +16,6 @@
     justify-content: center;
     align-items: center;
     font-size: large;
-    
+
 }
+*/
